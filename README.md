@@ -4,10 +4,11 @@ A lightweight and powerful **Tableau Extension** that allows users to **paste mu
 
 ---
 ## 🖼️ Screenshots
-![filter 50000 multiline user ids from excel using tableau parameter against live sql query](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/filter-50000-multiline-user-ids-from-excel-using-tableau-parameter.png)
+![filter 50000 multiline user ids from excel using parameter against live sql query in tableau](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-filter-50000-multiline-user-ids-from-excel-using-parameter.png)
 
 ![tableau multiline text parameter filter configuration](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-multiline-text-parameter-configuration.png)
 
+![tableau parameter passing multiline text input filter ids to postgres live query](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-parameter-passing-multiline-text-input-filter-ids-to-postgres-live-query.png)
 
 
 ### 🔧 How to Use
