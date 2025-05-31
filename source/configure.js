@@ -88,15 +88,18 @@ tableau.extensions.initializeDialogAsync().then(async () => {
     // Check for existing license key
     const savedLicenseKey = settings.licenseKey;
     const licenseKeyInput = document.getElementById('licenseKey');
-    const licenseStatus = document.getElementById('licenseStatus');
+    const licenseCollapsed = document.getElementById('licenseCollapsed');
+    const licenseDetails = document.getElementById('licenseDetails');
     const configSection = document.getElementById('configSection');
 
     if (savedLicenseKey && validateLicenseKey(savedLicenseKey)) {
         licenseKeyInput.value = savedLicenseKey;
-        licenseStatus.textContent = 'License validated';
-        licenseStatus.className = 'status-message success';
-        licenseStatus.style.display = 'block';
+        licenseCollapsed.style.display = 'block';
+        licenseDetails.style.display = 'none';
         configSection.style.display = 'block';
+    } else {
+        licenseCollapsed.style.display = 'none';
+        licenseDetails.style.display = 'block';
     }
 
     // Add license key validation handler
@@ -112,16 +115,20 @@ tableau.extensions.initializeDialogAsync().then(async () => {
         console.log('Validation result:', isValid);
         
         if (isValid) {
-            licenseStatus.textContent = 'License key valid';
-            licenseStatus.className = 'status-message success';
+            // Show collapsed view
+            document.getElementById('licenseCollapsed').style.display = 'block';
+            document.getElementById('licenseDetails').style.display = 'none';
             configSection.style.display = 'block';
             document.getElementById('saveButton').disabled = false;
         } else {
+            // Show expanded view with error
+            document.getElementById('licenseCollapsed').style.display = 'none';
+            document.getElementById('licenseDetails').style.display = 'block';
             licenseStatus.textContent = 'Invalid license key';
             licenseStatus.className = 'status-message error';
+            licenseStatus.style.display = 'block';
             configSection.style.display = 'none';
         }
-        licenseStatus.style.display = 'block';
     });
 
     // Handle SQL Prevention setting - default to true if not set
@@ -376,5 +383,19 @@ async function saveConfiguration() {
         console.error('Error saving configuration:', error);
         showStatus('Error saving configuration: ' + error.message, true);
         document.getElementById('saveButton').disabled = false;
+    }
+}
+
+// Add toggle function for license details
+function toggleLicenseDetails() {
+    const licenseDetails = document.getElementById('licenseDetails');
+    const expandButton = document.querySelector('.expand-button');
+    
+    if (licenseDetails.style.display === 'none') {
+        licenseDetails.style.display = 'block';
+        expandButton.classList.add('expanded');
+    } else {
+        licenseDetails.style.display = 'none';
+        expandButton.classList.remove('expanded');
     }
 } 

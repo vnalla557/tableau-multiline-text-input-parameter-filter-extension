@@ -245,4 +245,43 @@ h2 {
 .purchase-link a:hover {
     text-decoration: underline;
     color: #1976D2;
+}
+
+.license-collapsed {
+    margin-bottom: 20px;
+}
+
+.license-status-banner {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 4px;
+    color: #2e7d32;
+    font-weight: 500;
+}
+
+.check-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.expand-button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #2e7d32;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.expand-button:hover {
+    opacity: 0.8;
+}
+
+.expand-button.expanded {
+    transform: rotate(180deg);
 } 
