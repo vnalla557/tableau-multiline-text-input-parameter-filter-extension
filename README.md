@@ -4,14 +4,18 @@ A lightweight and powerful **Tableau Extension** that allows users to **paste mu
 
 ---
 
-## How to use
+### 🔧 How to Use
 
-	1. Download the Extension: 
-	[multiline-text-input-parameter-filter.trex](https://vnalla557.github.io/tableau-multiline-text-input-parameter-filter-extension/multiline-text-input-parameter-filter.trex)
-	2. Drag Extension object onto your dashboard
-	3. Click Access Local Extensions and select the .trex file
-	4. Configue the parameter and change title text and save
-	5. Done.
+1. **Download the Extension**:  
+   [multiline-text-input-parameter-filter.trex](https://vnalla557.github.io/tableau-multiline-text-input-parameter-filter-extension/multiline-text-input-parameter-filter.trex)
+
+2. **Drag the Extension object** onto your Tableau dashboard.
+
+3. **Click "Access Local Extensions"** and select the `.trex` file you downloaded.
+
+4. **Configure** the parameter and customize the title text, then click **Save**.
+
+5. ✅ You're done!
 
 ## 🔍 Features
 
