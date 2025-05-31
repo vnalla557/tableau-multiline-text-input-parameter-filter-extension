@@ -91,15 +91,18 @@ tableau.extensions.initializeDialogAsync().then(async () => {
     const licenseCollapsed = document.getElementById('licenseCollapsed');
     const licenseDetails = document.getElementById('licenseDetails');
     const configSection = document.getElementById('configSection');
+    const licenseSection = document.getElementById('licenseSection');
 
     if (savedLicenseKey && validateLicenseKey(savedLicenseKey)) {
         licenseKeyInput.value = savedLicenseKey;
         licenseCollapsed.style.display = 'block';
         licenseDetails.style.display = 'none';
         configSection.style.display = 'block';
+        licenseSection.classList.add('validated');
     } else {
         licenseCollapsed.style.display = 'none';
         licenseDetails.style.display = 'block';
+        licenseSection.classList.remove('validated');
     }
 
     // Add license key validation handler
@@ -114,12 +117,15 @@ tableau.extensions.initializeDialogAsync().then(async () => {
         const isValid = validateLicenseKey(key);
         console.log('Validation result:', isValid);
         
+        const licenseSection = document.getElementById('licenseSection');
+        
         if (isValid) {
             // Show collapsed view
             document.getElementById('licenseCollapsed').style.display = 'block';
             document.getElementById('licenseDetails').style.display = 'none';
             configSection.style.display = 'block';
             document.getElementById('saveButton').disabled = false;
+            licenseSection.classList.add('validated');
         } else {
             // Show expanded view with error
             document.getElementById('licenseCollapsed').style.display = 'none';
@@ -128,6 +134,7 @@ tableau.extensions.initializeDialogAsync().then(async () => {
             licenseStatus.className = 'status-message error';
             licenseStatus.style.display = 'block';
             configSection.style.display = 'none';
+            licenseSection.classList.remove('validated');
         }
     });
 
