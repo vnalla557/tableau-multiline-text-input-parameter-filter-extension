@@ -60,21 +60,28 @@ body {
 }
 
 .status-message {
-    margin-bottom: 15px;
     padding: 10px;
+    margin: 10px 0;
     border-radius: 4px;
-}
-
-.status-message.info {
-    background-color: #e3f2fd;
-    color: #1565c0;
-    border: 1px solid #bbdefb;
+    display: none;
 }
 
 .status-message.error {
     background-color: #ffebee;
     color: #c62828;
-    border: 1px solid #ffcdd2;
+    border: 1px solid #ef9a9a;
+}
+
+.status-message.info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+}
+
+.status-message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
 }
 
 #textInput {
@@ -200,4 +207,22 @@ h2 {
 .checkbox-wrapper label {
     margin: 0;
     cursor: pointer;
+}
+
+#licenseSection {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+#licenseKey {
+    font-family: monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#licenseStatus {
+    margin-top: 10px;
 } 

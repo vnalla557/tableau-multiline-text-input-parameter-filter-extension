@@ -5,6 +5,44 @@ console.log('=== configure.js loading ===');
 // Debug mode
 const DEBUG = true;
 
+// License key validation
+const VALID_LICENSE_PREFIX = 'MLTIP-'; // Multiline Text Input Parameter
+const LICENSE_KEY_LENGTH = 25; // Including prefix
+
+function validateLicenseKey(key) {
+    if (!key) return false;
+    if (!key.startsWith(VALID_LICENSE_PREFIX)) return false;
+    if (key.length !== LICENSE_KEY_LENGTH) return false;
+    
+    // Simple checksum validation
+    const licenseBody = key.substring(VALID_LICENSE_PREFIX.length);
+    let sum = 0;
+    for (let i = 0; i < licenseBody.length - 1; i++) {
+        sum += licenseBody.charCodeAt(i);
+    }
+    const checksum = licenseBody[licenseBody.length - 1];
+    return (sum % 26 + 65) === checksum.charCodeAt(0);
+}
+
+function generateLicenseKey() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let key = VALID_LICENSE_PREFIX;
+    let sum = 0;
+    
+    // Generate random characters
+    for (let i = 0; i < LICENSE_KEY_LENGTH - VALID_LICENSE_PREFIX.length - 1; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        key += char;
+        sum += char.charCodeAt(0);
+    }
+    
+    // Add checksum character
+    const checksumChar = String.fromCharCode((sum % 26) + 65);
+    key += checksumChar;
+    
+    return key;
+}
+
 // Immediate check for save button
 const saveButton = document.getElementById('saveButton');
 console.log('Found save button:', saveButton);
@@ -35,15 +73,40 @@ tableau.extensions.initializeDialogAsync().then(async () => {
     console.log('=== Configuration dialog initialized successfully ===');
     showStatus('Loading settings...');
     
-    // Verify buttons exist
-    const saveBtn = document.getElementById('saveButton');
-    const cancelBtn = document.getElementById('cancelButton');
-    console.log('Save button exists:', !!saveBtn);
-    console.log('Cancel button exists:', !!cancelBtn);
-    
     // Load existing settings
     const settings = tableau.extensions.settings.getAll();
     debugLog('Initial settings load', settings);
+
+    // Check for existing license key
+    const savedLicenseKey = settings.licenseKey;
+    const licenseKeyInput = document.getElementById('licenseKey');
+    const licenseStatus = document.getElementById('licenseStatus');
+    const configSection = document.getElementById('configSection');
+
+    if (savedLicenseKey && validateLicenseKey(savedLicenseKey)) {
+        licenseKeyInput.value = savedLicenseKey;
+        licenseStatus.textContent = 'License validated';
+        licenseStatus.className = 'status-message success';
+        licenseStatus.style.display = 'block';
+        configSection.style.display = 'block';
+    }
+
+    // Add license key validation handler
+    licenseKeyInput.addEventListener('input', function() {
+        const key = this.value.trim().toUpperCase();
+        this.value = key;
+        
+        if (validateLicenseKey(key)) {
+            licenseStatus.textContent = 'License key valid';
+            licenseStatus.className = 'status-message success';
+            configSection.style.display = 'block';
+        } else {
+            licenseStatus.textContent = 'Invalid license key';
+            licenseStatus.className = 'status-message error';
+            configSection.style.display = 'none';
+        }
+        licenseStatus.style.display = 'block';
+    });
 
     // Handle SQL Prevention setting - default to true if not set
     const sqlPreventionSetting = settings.sqlPreventionEnabled;
@@ -229,12 +292,19 @@ function closeDialog() {
 
 // Save the configuration
 async function saveConfiguration() {
-    console.log('saveConfiguration function called');
-    
-    // Show saving status immediately
-    showStatus('Saving settings...');
-    
     try {
+        const licenseKey = document.getElementById('licenseKey').value.trim();
+        
+        if (!validateLicenseKey(licenseKey)) {
+            showStatus('Please enter a valid license key', true);
+            return;
+        }
+
+        showStatus('Saving configuration...');
+        
+        // Save license key
+        await tableau.extensions.settings.set('licenseKey', licenseKey);
+        
         const select = document.getElementById('parameterSelect');
         const selectedParameterId = select.value;
         const headingText = document.getElementById('headingText').value;
@@ -287,7 +357,7 @@ async function saveConfiguration() {
         closeDialog();
         
     } catch (error) {
-        console.error('Save failed:', error);
-        throw error; // Re-throw to be handled by the click handler
+        console.error('Error saving configuration:', error);
+        showStatus('Error saving configuration: ' + error.message, true);
     }
 } 

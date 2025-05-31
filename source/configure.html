@@ -17,35 +17,44 @@
         <h2>Configure Extension</h2>
         <div id="statusMessage" class="status-message"></div>
         
-        <div class="form-group">
-            <label for="parameterSelect">Select Parameter to Update:</label>
-            <select id="parameterSelect" class="form-control"></select>
+        <div id="licenseSection" class="form-group">
+            <label for="licenseKey">License Key:</label>
+            <input type="text" id="licenseKey" class="form-control" placeholder="Enter your license key">
+            <small class="form-text">Enter the license key to activate the extension</small>
+            <div id="licenseStatus" class="status-message" style="display: none;"></div>
         </div>
 
-        <div class="form-group">
-            <label for="headingText">Heading Text:</label>
-            <input type="text" id="headingText" class="form-control" value="Title">
-            <small class="form-text">The heading shown above the text box</small>
-        </div>
-
-        <div class="form-group">
-            <label for="placeholderText">Placeholder Text:</label>
-            <input type="text" id="placeholderText" class="form-control" value="Enter your text here...">
-            <small class="form-text">Text shown when the input is empty</small>
-        </div>
-
-        <div class="form-group">
-            <label for="separator">Line Separator:</label>
-            <input type="text" id="separator" class="form-control" value=",">
-            <small class="form-text">Character(s) used to separate lines (e.g., comma, semicolon, pipe)</small>
-        </div>
-
-        <div class="form-group">
-            <div class="checkbox-wrapper">
-                <input type="checkbox" id="sqlPreventionEnabled" class="form-control-checkbox" checked="true">
-                <label for="sqlPreventionEnabled">Enable SQL Injection Prevention</label>
+        <div id="configSection" style="display: none;">
+            <div class="form-group">
+                <label for="parameterSelect">Select Parameter to Update:</label>
+                <select id="parameterSelect" class="form-control"></select>
             </div>
-            <small class="form-text">Removes SQL keywords and special characters from input (recommended for security)</small>
+
+            <div class="form-group">
+                <label for="headingText">Heading Text:</label>
+                <input type="text" id="headingText" class="form-control" value="Title">
+                <small class="form-text">The heading shown above the text box</small>
+            </div>
+
+            <div class="form-group">
+                <label for="placeholderText">Placeholder Text:</label>
+                <input type="text" id="placeholderText" class="form-control" value="Enter your text here...">
+                <small class="form-text">Text shown when the input is empty</small>
+            </div>
+
+            <div class="form-group">
+                <label for="separator">Line Separator:</label>
+                <input type="text" id="separator" class="form-control" value=",">
+                <small class="form-text">Character(s) used to separate lines (e.g., comma, semicolon, pipe)</small>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="sqlPreventionEnabled" class="form-control-checkbox" checked="true">
+                    <label for="sqlPreventionEnabled">Enable SQL Injection Prevention</label>
+                </div>
+                <small class="form-text">Removes SQL keywords and special characters from input (recommended for security)</small>
+            </div>
         </div>
 
         <div class="button-group">
