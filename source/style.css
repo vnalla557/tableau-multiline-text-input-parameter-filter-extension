@@ -251,20 +251,20 @@ h2 {
 }
 
 .license-collapsed {
-    margin-bottom: 15px;
+    margin: 10px 0;
 }
 
 .license-status-banner {
     display: flex;
     align-items: center;
-    padding: 6px 12px;
-    background-color: #e8f5e9;
-    border: 1px solid #a5d6a7;
+    padding: 10px;
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
     border-radius: 4px;
-    color: #2e7d32;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 1;
+    color: #1565c0;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 #licenseDetails {
@@ -277,15 +277,16 @@ h2 {
 .check-icon {
     font-size: 14px;
     margin-right: 8px;
+    line-height: 1;
 }
 
 .expand-button {
     margin-left: auto;
     background: none;
     border: none;
-    color: #2e7d32;
+    color: #1565c0;
     cursor: pointer;
-    padding: 2px;
+    padding: 0 4px;
     font-size: 12px;
     transition: transform 0.2s ease;
     line-height: 1;
