@@ -3,13 +3,6 @@
 A lightweight and powerful **Tableau Extension** that allows users to **paste multiline text into a textbox**, which is then **passed to a Tableau parameter**. Perfect for use cases where you want to filter dashboards based on pasted lists (e.g. customer IDs, SKUs, email addresses).
 
 ---
-## 🖼️ Screenshots
-![filter 50000 multiline user ids from excel using parameter against live sql query in tableau](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-filter-50000-multiline-user-ids-from-excel-using-parameter.png)
-
-![tableau multiline text parameter filter configuration](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-multiline-text-parameter-configuration.png)
-
-![tableau parameter passing multiline text input filter ids to postgres live query](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-parameter-passing-multiline-text-input-filter-ids-to-postgres-live-query.png)
-
 
 ### 🔧 How to Use
 
@@ -22,6 +15,14 @@ A lightweight and powerful **Tableau Extension** that allows users to **paste mu
 4. **Configure** the parameter and customize the title text, then click **Save**.
 
 5. ✅ You're done!
+
+## 🖼️ Screenshots
+![filter 50000 multiline user ids from excel using parameter against live sql query in tableau](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-filter-50000-multiline-user-ids-from-excel-using-parameter.png)
+
+![tableau multiline text parameter filter configuration](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-multiline-text-parameter-configuration.png)
+
+![tableau parameter passing multiline text input filter ids to postgres live query](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-parameter-passing-multiline-text-input-filter-ids-to-postgres-live-query.png)
+
 
 ## 🔍 Features
 
