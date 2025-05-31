@@ -23,8 +23,8 @@ A lightweight and powerful **Tableau Extension** that allows users to **paste mu
 </p>
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-multiline-text-parameter-configuration.png" style="width: 49%; display: inline-block; margin-right: 1%;" />
-  <img src="https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-parameter-passing-multiline-text-input-filter-ids-to-postgres-live-query.png" style="width: 49%; display: inline-block;" />
+  <img src="https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-multiline-text-parameter-configuration.png" style="width: 40%; display: inline-block; margin-right: 1%;" />
+  <img src="https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/tableau-parameter-passing-multiline-text-input-filter-ids-to-postgres-live-query.png" style="width: 59%; display: inline-block;" />
 </p>
 
 
