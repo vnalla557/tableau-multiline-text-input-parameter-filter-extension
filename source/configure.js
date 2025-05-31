@@ -14,31 +14,21 @@ function validateLicenseKey(key) {
     if (!key.startsWith(VALID_LICENSE_PREFIX)) return false;
     if (key.length !== LICENSE_KEY_LENGTH) return false;
     
-    // Simple checksum validation
+    // Simple validation - check format and allowed characters
     const licenseBody = key.substring(VALID_LICENSE_PREFIX.length);
-    let sum = 0;
-    for (let i = 0; i < licenseBody.length - 1; i++) {
-        sum += licenseBody.charCodeAt(i);
-    }
-    const checksum = licenseBody[licenseBody.length - 1];
-    return (sum % 26 + 65) === checksum.charCodeAt(0);
+    const validCharsRegex = /^[A-Z0-9]+$/;
+    return validCharsRegex.test(licenseBody);
 }
 
 function generateLicenseKey() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let key = VALID_LICENSE_PREFIX;
-    let sum = 0;
     
     // Generate random characters
-    for (let i = 0; i < LICENSE_KEY_LENGTH - VALID_LICENSE_PREFIX.length - 1; i++) {
+    for (let i = 0; i < LICENSE_KEY_LENGTH - VALID_LICENSE_PREFIX.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];
         key += char;
-        sum += char.charCodeAt(0);
     }
-    
-    // Add checksum character
-    const checksumChar = String.fromCharCode((sum % 26) + 65);
-    key += checksumChar;
     
     return key;
 }
