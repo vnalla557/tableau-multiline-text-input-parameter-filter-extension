@@ -10,14 +10,32 @@ const VALID_LICENSE_PREFIX = 'MLTIP-'; // Multiline Text Input Parameter
 const LICENSE_KEY_LENGTH = 25; // Including prefix
 
 function validateLicenseKey(key) {
-    if (!key) return false;
-    if (!key.startsWith(VALID_LICENSE_PREFIX)) return false;
-    if (key.length !== LICENSE_KEY_LENGTH) return false;
+    console.log('Validating key:', key);
+    
+    if (!key) {
+        console.log('Key is empty');
+        return false;
+    }
+    
+    console.log('Checking prefix. Key starts with:', key.substring(0, 6));
+    if (!key.startsWith(VALID_LICENSE_PREFIX)) {
+        console.log('Invalid prefix');
+        return false;
+    }
+    
+    console.log('Checking length. Key length:', key.length, 'Expected:', LICENSE_KEY_LENGTH);
+    if (key.length !== LICENSE_KEY_LENGTH) {
+        console.log('Invalid length');
+        return false;
+    }
     
     // Simple validation - check format and allowed characters
     const licenseBody = key.substring(VALID_LICENSE_PREFIX.length);
+    console.log('Checking license body:', licenseBody);
     const validCharsRegex = /^[A-Z0-9]+$/;
-    return validCharsRegex.test(licenseBody);
+    const isValid = validCharsRegex.test(licenseBody);
+    console.log('License validation result:', isValid);
+    return isValid;
 }
 
 function generateLicenseKey() {
@@ -84,9 +102,13 @@ tableau.extensions.initializeDialogAsync().then(async () => {
     // Add license key validation handler
     licenseKeyInput.addEventListener('input', function() {
         const key = this.value.trim().toUpperCase();
+        console.log('License key input:', key);
         this.value = key;
         
-        if (validateLicenseKey(key)) {
+        const isValid = validateLicenseKey(key);
+        console.log('Validation result:', isValid);
+        
+        if (isValid) {
             licenseStatus.textContent = 'License key valid';
             licenseStatus.className = 'status-message success';
             configSection.style.display = 'block';
@@ -287,6 +309,7 @@ async function saveConfiguration() {
         
         if (!validateLicenseKey(licenseKey)) {
             showStatus('Please enter a valid license key', true);
+            document.getElementById('saveButton').disabled = false;
             return;
         }
 
@@ -311,6 +334,7 @@ async function saveConfiguration() {
         });
         
         if (!selectedParameterId) {
+            document.getElementById('saveButton').disabled = false;
             throw new Error('Please select a parameter.');
         }
 
@@ -339,15 +363,15 @@ async function saveConfiguration() {
         const savedSettings = tableau.extensions.settings.getAll();
         console.log('Saved settings:', savedSettings);
         
-        // Show success
+        // Show success and close dialog
         showStatus('Settings saved successfully!');
-        
-        // Close dialog with signal to apply
-        console.log('Closing dialog after successful save');
-        closeDialog();
+        setTimeout(() => {
+            tableau.extensions.ui.closeDialog('save');
+        }, 500);
         
     } catch (error) {
         console.error('Error saving configuration:', error);
         showStatus('Error saving configuration: ' + error.message, true);
+        document.getElementById('saveButton').disabled = false;
     }
 } 
