@@ -3,6 +3,9 @@
 A lightweight and powerful **Tableau Extension** that allows users to **paste multiline text into a textbox**, which is then **passed to a Tableau parameter**. Perfect for use cases where you want to filter dashboards based on pasted lists (e.g. customer IDs, SKUs, email addresses).
 
 ---
+## 🖼️ Screenshots
+![Extension Icon](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/filter-50000-multiline-user-ids-from-excel-using-tableau-parameter)
+
 
 ### 🔧 How to Use
 
