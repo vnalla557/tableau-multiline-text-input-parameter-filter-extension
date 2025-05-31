@@ -225,4 +225,24 @@ h2 {
 
 #licenseStatus {
     margin-top: 10px;
+}
+
+.purchase-link {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.purchase-link a {
+    color: #2196F3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.purchase-link a:hover {
+    text-decoration: underline;
+    color: #1976D2;
 } 
