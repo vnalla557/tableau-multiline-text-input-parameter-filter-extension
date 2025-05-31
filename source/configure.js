@@ -105,6 +105,9 @@ tableau.extensions.initializeDialogAsync().then(async () => {
         console.log('License key input:', key);
         this.value = key;
         
+        // Clear any previous error messages
+        clearStatus();
+        
         const isValid = validateLicenseKey(key);
         console.log('Validation result:', isValid);
         
@@ -112,6 +115,7 @@ tableau.extensions.initializeDialogAsync().then(async () => {
             licenseStatus.textContent = 'License key valid';
             licenseStatus.className = 'status-message success';
             configSection.style.display = 'block';
+            document.getElementById('saveButton').disabled = false;
         } else {
             licenseStatus.textContent = 'Invalid license key';
             licenseStatus.className = 'status-message error';
@@ -302,17 +306,30 @@ function closeDialog() {
     tableau.extensions.ui.closeDialog('apply');  // Signal to trigger apply
 }
 
+// Add this function to clear status messages
+function clearStatus() {
+    const statusDiv = document.getElementById('statusMessage');
+    statusDiv.style.display = 'none';
+    statusDiv.textContent = '';
+    statusDiv.className = 'status-message';
+}
+
 // Save the configuration
 async function saveConfiguration() {
     try {
+        clearStatus(); // Clear any previous status messages
+        
         const licenseKey = document.getElementById('licenseKey').value.trim();
+        const saveButton = document.getElementById('saveButton');
         
         if (!validateLicenseKey(licenseKey)) {
             showStatus('Please enter a valid license key', true);
-            document.getElementById('saveButton').disabled = false;
+            saveButton.disabled = false;
             return;
         }
 
+        // Disable save button while saving
+        saveButton.disabled = true;
         showStatus('Saving configuration...');
         
         // Save license key
@@ -320,24 +337,18 @@ async function saveConfiguration() {
         
         const select = document.getElementById('parameterSelect');
         const selectedParameterId = select.value;
+        
+        if (!selectedParameterId) {
+            showStatus('Please select a parameter', true);
+            saveButton.disabled = false;
+            return;
+        }
+
         const headingText = document.getElementById('headingText').value;
         const placeholderText = document.getElementById('placeholderText').value;
         const separator = document.getElementById('separator').value || ',';
         const checkbox = document.getElementById('sqlPreventionEnabled');
         
-        console.log('Form values collected:', {
-            selectedParameterId,
-            headingText,
-            placeholderText,
-            separator,
-            sqlPreventionEnabled: checkbox.checked
-        });
-        
-        if (!selectedParameterId) {
-            document.getElementById('saveButton').disabled = false;
-            throw new Error('Please select a parameter.');
-        }
-
         // Create settings object
         const newSettings = {
             selectedParameterId,
@@ -347,27 +358,19 @@ async function saveConfiguration() {
             sqlPreventionEnabled: checkbox.checked ? 'true' : 'false'
         };
         
-        console.log('Attempting to save settings:', newSettings);
-        
         // Save each setting
         for (const [key, value] of Object.entries(newSettings)) {
-            console.log(`Setting ${key}=${value}`);
             await tableau.extensions.settings.set(key, value);
         }
         
         // Save all settings
-        console.log('Calling saveAsync...');
         await tableau.extensions.settings.saveAsync();
-        
-        // Verify settings were saved
-        const savedSettings = tableau.extensions.settings.getAll();
-        console.log('Saved settings:', savedSettings);
         
         // Show success and close dialog
         showStatus('Settings saved successfully!');
         setTimeout(() => {
             tableau.extensions.ui.closeDialog('save');
-        }, 500);
+        }, 1000);
         
     } catch (error) {
         console.error('Error saving configuration:', error);
