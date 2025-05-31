@@ -4,7 +4,7 @@ A lightweight and powerful **Tableau Extension** that allows users to **paste mu
 
 ---
 ## 🖼️ Screenshots
-![Extension Icon](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/filter-50000-multiline-user-ids-from-excel-using-tableau-parameter)
+![Extension Icon](https://raw.githubusercontent.com/vnalla557/tableau-multiline-text-input-parameter-filter-extension/main/screenshots/filter-50000-multiline-user-ids-from-excel-using-tableau-parameter.png)
 
 
 ### 🔧 How to Use
