@@ -48,3 +48,7 @@ A lightweight and powerful **Tableau Extension** that allows users to **paste mu
 
 ---
 
+<head>
+  <meta name="google-site-verification" content="Dbw35MUxB8BM41EvZ4UxKCEzbRx3N2cPF4KLjhSLv_g" />
+</head>
+
